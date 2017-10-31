@@ -67,13 +67,13 @@ Plugin.install = function(Vue, options){
 		get:function () { return this.$root._lang },
 	});
 
-    Object.defineProperty(Vue.prototype, '$translate', function(text, file) {
+    Vue.prototype.$translate = function(text, file) {
         for (var i in file) {
             if (i === text) {
                 return file[i]
             }
         }
-    })
+    };
 
 	if(typeof o != 'object'){
 		console.error('[vue-lang] the options should be an object type.');
