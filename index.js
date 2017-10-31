@@ -64,8 +64,16 @@ Plugin.install = function(Vue, options){
 	var default_lang = o.default || 'en';
 
 	Object.defineProperty(Vue.prototype, '$lang', {
-		get:function () { return this.$root._lang }
+		get:function () { return this.$root._lang },
 	});
+
+    Object.defineProperty(Vue.prototype, '$translate', function(text, file) {
+        for (var i in file) {
+            if (i === text) {
+                return file[i]
+            }
+        }
+    })
 
 	if(typeof o != 'object'){
 		console.error('[vue-lang] the options should be an object type.');
